@@ -8,6 +8,10 @@ namespace Item_PatternsTest_Actual.Behaviors
 {
     //Designed with the Strategy pattern in mind
     //ItemBehavior serves as the base for all items in the game
+    //I think this might fit the "Flyweight" design pattern, since _name, _id, _description, and _weight are all intrisict to their respective items
+    //and don't change. I tested this out in Program.cs by changing the name of the Steel Pickaxe item, and that change was reflected to all over Steel Pickaxes
+    //that were subsequently created and tested, so the data being referenced is the same for the steel pickaxes.
+    //Other Behaviors I created for this use a MemberwiseClone() function and the base items in ItemFactory.cs act as prototypes for future items created.
     public class ItemBehavior : IItem
     {
         protected string _name; // All items have an associated name 
@@ -16,6 +20,7 @@ namespace Item_PatternsTest_Actual.Behaviors
         protected float _weight; // All items have an associated Weight
 
         //Methods for accessing the basic info of an item
+        public virtual void ChangeName(string newName) { _name = newName; } //Test function, not meant for the final product.
         public virtual string GetName() { return _name; }
         public virtual int GetID() { return _id; }
         public virtual float GetWeight() { return _weight; }

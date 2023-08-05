@@ -16,6 +16,7 @@ namespace Item_PatternsTest_Actual
 
         //Accessors for information from itemBehavior
         public string GetName() { return itemBehavior.GetName(); }
+        public void ChangeName(string newName) { itemBehavior.ChangeName(newName); } //Test function, not meant for the final product.
         public int GetID() { return itemBehavior.GetID(); }
 
         //Methods that access the StackBehavior of the item.
