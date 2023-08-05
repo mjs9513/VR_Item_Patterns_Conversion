@@ -21,7 +21,9 @@ namespace Item_PatternsTest_Actual.Factories
     class ItemFactory
     {
         //Pre-defining items that can be crafted in the game. I assume these could be shifted to a separate file/class entirely and listed as static variables within.
-        
+        //Or they could be created at runtime as necessary to reduce potential load times by having "ToolAtlas_Pickaxe" and "ResourceAtlas" be empty at the start, then
+        //as items need to be spawned, if they don't already exist when using the Factory methods they get created at runtime.
+
         /// <summary>
         /// Tool Template/Blueprint creation
         /// </summary>
