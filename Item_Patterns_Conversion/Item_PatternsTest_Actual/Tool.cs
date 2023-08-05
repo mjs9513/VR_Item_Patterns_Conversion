@@ -12,11 +12,11 @@ namespace Item_PatternsTest_Actual
     {
         protected ToolBehavior toolBehavior;
 
-        //Access info from the ToolBehavior of this object
-        //Methods designed to use the Template design pattern, used in Item.cs
+        //Methods designed to use the Template design pattern from Item.cs
         protected override float CalculateItemWeight() { return itemBehavior.GetWeight() + toolBehavior.GetWeightModifier(); }
         protected override string GetItemDescription() { return toolBehavior.GetToolDescription(); }
 
+        //Access info from the ToolBehavior of this object
         public float Damage() { return toolBehavior.GetDamage(); }
         public ToolType ToolType() { return toolBehavior.GetToolType(); }
         public DamageType DamageType() { return toolBehavior.GetDamageType(); }
@@ -51,12 +51,6 @@ namespace Item_PatternsTest_Actual
                 damageToDeal = toolBehavior.GetDamage() + toolBehavior.GetDamageModifier();
 
             return damageToDeal;
-        }
-
-        //Clone the tool for copying it's data
-        public override Item Clone()
-        {
-            throw new NotImplementedException();
         }
     }
 }

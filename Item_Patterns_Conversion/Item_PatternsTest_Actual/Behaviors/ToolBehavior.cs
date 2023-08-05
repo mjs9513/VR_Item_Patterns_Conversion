@@ -27,7 +27,7 @@ namespace Item_PatternsTest_Actual.Behaviors
         public float GetDamageModifier() { return _damageModifier; }
         public float GetDurability() { return _durability; }
         public bool IsBroken() { return _isBroken; }
-        public string GetToolDescription()
+        public string GetToolDescription() //Used to get info of the ToolBehavior, used in tool.cs concatinated with the base description.
         {
             string toolDescription =
                   "\nDurability: " + GetDurability() + "/100"
@@ -39,6 +39,7 @@ namespace Item_PatternsTest_Actual.Behaviors
             return toolDescription;
         }
 
+        //Methods for changing the weight and damage modified of an item, idea is to eventually build out the ability to enchant items.
         public void ModifyWeightModifier(float modifier) 
         {
             _weightModifier = Math.Max(_weightModifier + modifier, 0); //prevent the weight modifier from going below 0
@@ -68,6 +69,12 @@ namespace Item_PatternsTest_Actual.Behaviors
                 _isBroken = true;
             else
                 _isBroken = true; // if the durability is above 0, it is not broken
+        }
+
+        //Clone the tool for copying it's data, , using this to fulfill the Prototype Design Pattern
+        public ToolBehavior Clone()
+        {
+            return (ToolBehavior)this.MemberwiseClone();
         }
     }
 }

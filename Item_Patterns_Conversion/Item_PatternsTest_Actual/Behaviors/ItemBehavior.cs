@@ -8,7 +8,7 @@ namespace Item_PatternsTest_Actual.Behaviors
 {
     //Designed with the Strategy pattern in mind
     //ItemBehavior serves as the base for all items in the game
-    public class ItemBehavior :IItem
+    public class ItemBehavior : IItem
     {
         protected string _name; // All items have an associated name 
         protected int _id; // All items have an associated ID 

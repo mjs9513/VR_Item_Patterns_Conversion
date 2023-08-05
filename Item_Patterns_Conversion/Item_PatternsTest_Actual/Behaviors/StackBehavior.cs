@@ -24,7 +24,7 @@ namespace Item_PatternsTest_Actual.Behaviors
             this.MAX_STACK = MAX_STACK;
         }
 
-        public void ModifyStack(int modifier)
+        public void ModifyStack(int modifier) //Standard method for modifying the count, takes the MAX_STACK into account
         {
             if (_stackable == true)
                 _count = Math.Min(_count += modifier, MAX_STACK);
@@ -39,6 +39,12 @@ namespace Item_PatternsTest_Actual.Behaviors
         {
             string stackDescription = "\nCount: " + _count + "/" + MAX_STACK;
             return stackDescription;
+        }
+
+        //Clone the StackBehavior for copying it's data, using this to fulfill the Prototype Design Pattern
+        public StackBehavior Clone()
+        {
+            return (StackBehavior)this.MemberwiseClone();
         }
     }
 }

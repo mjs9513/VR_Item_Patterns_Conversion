@@ -16,12 +16,8 @@ namespace Item_PatternsTest_Actual.Interfaces
             this.resourceType = resourceType;
         }
 
+        //Methods designed to use the Template design pattern from Item.cs
         protected override float CalculateItemWeight() { return itemBehavior.GetWeight() * stackBehavior.Count(); }
         protected override string GetItemDescription() { return stackBehavior.GetStackDescription(); }
-
-        public override Item Clone()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -12,31 +12,33 @@ namespace Item_PatternsTest_Actual
             Console.WriteLine("Hello World!\n");
 
             //Manual Pickaxe Creation and Tests
-            Console.WriteLine("Creating an Iron Pickaxe Item manually!\n");
+            Console.WriteLine("Creating an Iron Pickaxe Item manually!");
             Item Iron_Pickaxe = new Tool(new ItemBehavior("Iron Pickaxe", 1, "Simple but Sturdy!", 25f), new ToolBehavior(10f, DamageType.Piercing, ToolType.Pickaxe, 100));
             Console.WriteLine("Getting the Description of the Iron Pickaxe!\n");
             Console.WriteLine(Iron_Pickaxe.GetDescription());
 
 
             //Steel pickaxe creation with the factory
-            Console.WriteLine("Creating a Steel Pickaxe with the Item Factory");
+            Console.WriteLine("\nCreating a Steel Pickaxe with the Item Factory\n");
             Tool changingPickaxe = ItemFactory.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
-            Console.WriteLine("Getting the Description of the Steel Pickaxe!\n");
             Console.WriteLine(changingPickaxe.GetDescription());
-            Console.WriteLine("\nMaking the Steel Pickaxe lose durability");
+            Console.WriteLine("\nMaking the Steel Pickaxe lose durability\n");
             changingPickaxe.ModifyDurability(-10f);
-            Console.WriteLine("Re-printing the description:\n");
             Console.WriteLine(changingPickaxe.GetDescription());
 
             //changing the Steel pickaxe to Mythical and testing it
-            Console.WriteLine("Changing the SteelPickaxe to a Mythical Pickaxe");
+            Console.WriteLine("\nChanging the Steel Pickaxe to a Mythical Pickaxe\n");
             changingPickaxe = ItemFactory.ToolFactory(ToolQuality.Mythical, ToolType.Pickaxe);
-            Console.WriteLine("Getting the description of the now Mythical Pickaxe!\n");
+            Console.WriteLine(changingPickaxe.GetDescription());
+
+            //Changing the Mythical Pickaxe back to Steel
+            Console.WriteLine("\nChanging the Mythical Pickaxe back to a Steel One\n");
+            changingPickaxe = ItemFactory.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
             Console.WriteLine(changingPickaxe.GetDescription());
 
             //Testing Wood and Stone resources.
             Item Wood = ItemFactory.ResourceFactory(ResourceType.Wood);
-            Console.WriteLine("Created a piece of wood, printing out the description:\n");
+            Console.WriteLine("\nCreated a piece of wood, printing out the description:\n");
             Console.WriteLine(Wood.GetDescription());
 
             Console.WriteLine("\nChanging the wood to stone\n");
