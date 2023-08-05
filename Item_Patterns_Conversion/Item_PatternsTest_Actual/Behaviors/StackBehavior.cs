@@ -37,7 +37,7 @@ namespace Item_PatternsTest_Actual.Behaviors
 
         public string GetStackDescription()
         {
-            string stackDescription = "Count: " + _count + "/" + MAX_STACK;
+            string stackDescription = "\nCount: " + _count + "/" + MAX_STACK;
             return stackDescription;
         }
     }

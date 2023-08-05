@@ -7,13 +7,21 @@ using System.Threading.Tasks;
 namespace Item_PatternsTest_Actual.Enums
 {
     public enum ToolType
-    {//enum for the types of crafting this resource is associated with
+    {//enum for the types of tools
         Axe,
         Pickaxe,
         Hammer,
         Cultivator,
         Torch,
         Shield
+    }
+    
+    public enum ToolQuality
+    {//enum for the quality levels of tools that can be made
+        Stone,
+        Iron,
+        Steel,
+        Mythical
     }
 
     public enum DamageType
