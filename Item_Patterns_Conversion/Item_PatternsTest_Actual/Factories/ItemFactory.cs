@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace Item_PatternsTest_Actual.Factories
 {
-    /* Tool Qualities
-    Stone,
-    Iron,
-    Steel,
-    Mythical
-     */
     //Built with the goal of a Factory/Abstract Factory design pattern in mind
+
+    /*I imagine if I wanted to implement something like Object Pooling, I would create Pools of base Items and 
+    *them through the factory to assign them the different items from the "Atlases" I made to change their type, like I did with the tests in Program.cs
+    *and then when I delete the item in game by either adding it to the player's inventory or despawning it, I nullify the Item and return it to
+    *a list/collection of available items.
+    */
     class ItemFactory
     {
         //Pre-defining items that can be crafted in the game. I assume these could be shifted to a separate file/class entirely and listed as static variables within.
@@ -50,8 +50,7 @@ namespace Item_PatternsTest_Actual.Factories
             {ResourceType.Clay, new ResourceBlueprint(new ItemBehavior("Clay", 8, "Earth you can mold!", 2f), TenStackMax)},
         };
 
-        //Two factory methods, one for creating tools and one for resources. I imagine there is probabily a better way to do this than giant switch statements?
-
+        //Two factory methods, one for creating tools and one for resources.
         public static Tool ToolFactory(ToolQuality toolQuality, ToolType toolType)
         {
             Tool newTool = null;
@@ -83,7 +82,7 @@ namespace Item_PatternsTest_Actual.Factories
     }
 }
 
-//Original Item Factory setup:
+//Original Item Factory setup before I slept on it and had a much better idea:
 /// <summary>
 /// Tools
 /// </summary>

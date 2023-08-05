@@ -18,7 +18,6 @@ namespace Item_PatternsTest_Actual
             Console.WriteLine("Getting the Description of the Iron Pickaxe!\n");
             Console.WriteLine(Iron_Pickaxe.GetDescription());
 
-
             //Steel pickaxe creation with the factory
             Console.WriteLine("\nCreating a Steel Pickaxe with the Item Factory\n");
             Tool changingPickaxe = ItemFactory.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
@@ -48,7 +47,7 @@ namespace Item_PatternsTest_Actual
             Console.WriteLine("\nAdding more wood onto the stack of wood:\n");
             testResource = testItem as Resource; // storing the testItem as a Resource so it can be modified using Resource methods
             testResource.ModifyStack(5);
-            Console.WriteLine(testItem.GetDescription()); //Kinda neat that printing it back out as testItem instead of testResource works still
+            Console.WriteLine(testItem.GetDescription()); //Printing back out the testItem.GetDescription()
 
             Console.WriteLine("\nChanging the wood to stone\n");
             testItem = ItemFactory.ResourceFactory(ResourceType.Stone);
@@ -60,12 +59,7 @@ namespace Item_PatternsTest_Actual
 
             Console.WriteLine("\nChanging stone back into  wood\n");
             testItem = ItemFactory.ResourceFactory(ResourceType.Wood);
-            Console.WriteLine(testItem.GetDescription());
-
-            //I imagine if I wanted to implement something like Object Pooling, I would create Pools of either: Resources, Tools, Stones, and then I would 
-            //Either run them through the factory to change their type like like I did with 'changingPickaxe'? Or would it be more efficient to spawn an instance of every object
-            //first, fill out the "Clone" methods I had started building in Tool.cs and Resource.cs and if I needed to spawn a new Pickaxe,
-            //use an Item/Tool/Resource from the pool and clone the pre-spawned base pickaxe into it? 
+            Console.WriteLine(testItem.GetDescription()); 
         }
     }
 }
