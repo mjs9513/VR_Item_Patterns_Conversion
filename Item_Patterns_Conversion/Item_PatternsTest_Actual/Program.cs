@@ -26,13 +26,17 @@ namespace Item_PatternsTest_Actual
             Console.WriteLine("\nMaking the Steel Pickaxe lose durability\n");
             changingPickaxe.ModifyDurability(-10f);
             Console.WriteLine(changingPickaxe.GetDescription());
-            Console.WriteLine("\nChanging the name of Steel Pickaxe to see what happens.");
 
             //Testing what happens when I change the name of the Steel Pickaxe ItemBehavior
+            Console.WriteLine("\nChanging the name of Steel Pickaxe to see what happens.\n");
             changingPickaxe.ChangeName("Definitely NOT a Steel Pickaxe");
             Console.WriteLine(changingPickaxe.GetDescription());
-            //Test Result: Definitely NOT a Steel Pickaxe becomes the name for all steel pickaxes. This makes me wonder if it meets the criteria for the flyweight design pattern
+            //Test Result: "Definitely NOT a Steel Pickaxe" becomes the name for all steel pickaxes. This makes me wonder if it meets the criteria for the flyweight design pattern
             //Since all Steel Pickaxes are referncing the same ItemBehavior associated with the Steel Pickaxe item.
+
+            /*Item manualSteelPickaxe = ItemFactory.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
+            Console.WriteLine("\nCreated a new Steel Pickaxe from the ToolFactory, printing out the description of it\n");
+            Console.WriteLine(manualSteelPickaxe.GetDescription());*/ // -> Created a new Steel Pickaxe with fresh data for durability different than changingPickaxe, but still had the name change.
 
             //changing the Steel pickaxe to Mythical and testing it
             Console.WriteLine("\nChanging the Steel Pickaxe to a Mythical Pickaxe\n");
