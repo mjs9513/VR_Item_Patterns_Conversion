@@ -21,7 +21,6 @@ namespace Item_PatternsTest_Actual.Factories
     class ItemFactory
     {
         //Pre-defining items that can be crafted in the game. I assume these could be shifted to a separate file/class entirely and listed as static variables within.
-        //Any suggestions on how to do this a bit better would be helpful if you have any.
         
         /// <summary>
         /// Tool Template/Blueprint creation

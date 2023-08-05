@@ -5,7 +5,8 @@ using Item_PatternsTest_Actual.Factories;
 using Item_PatternsTest_Actual.Interfaces;
 
 namespace Item_PatternsTest_Actual
-{
+{//Called this Item_PatternsTest_Actual because I tried porting the original VR game code into 'Item_PatternsTest' straight from Unity and it was a bit of a mess.
+    //Testing out different Design Patterns.
     class Program
     {
         static void Main(string[] args)
