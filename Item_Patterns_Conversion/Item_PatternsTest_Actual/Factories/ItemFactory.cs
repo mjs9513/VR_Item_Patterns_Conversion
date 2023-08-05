@@ -44,9 +44,9 @@ namespace Item_PatternsTest_Actual.Factories
 
         private static Dictionary<ResourceType, ResourceBlueprint> ResourceAtlas = new Dictionary<ResourceType, ResourceBlueprint>
         {
-            {ResourceType.Wood, new ResourceBlueprint(new ItemBehavior("Wood", 5, "Simple Wood", 3f), FiftyStackMax)},
+            {ResourceType.Wood, new ResourceBlueprint(new ItemBehavior("Wood", 5, "More than just a stick!", 3f), FiftyStackMax)},
             {ResourceType.Stone, new ResourceBlueprint(new ItemBehavior("Stone", 6, "It's not just a boulder... It's a rock!", 5f), TwentyFiveStackMax)},
-            {ResourceType.Flint, new ResourceBlueprint(new ItemBehavior("Flint", 7, "It's a rock, but different", 4f), TwentyFiveStackMax)},
+            {ResourceType.Flint, new ResourceBlueprint(new ItemBehavior("Flint", 7, "It's a rock, but different!", 4f), TwentyFiveStackMax)},
             {ResourceType.Clay, new ResourceBlueprint(new ItemBehavior("Clay", 8, "Earth you can mold!", 2f), TenStackMax)},
         };
 

@@ -22,11 +22,11 @@ namespace Item_PatternsTest_Actual.Behaviors
 
         public float GetDamage() { return _damage; } //return the damage + any damage modifier attached to the tool.
         public DamageType GetDamageType() { return _damageType; } // retrieve the damage type
-        public ToolType GetToolType() { return _toolType; }
-        public float GetWeightModifier() { return _weightModifier; }
-        public float GetDamageModifier() { return _damageModifier; }
-        public float GetDurability() { return _durability; }
-        public bool IsBroken() { return _isBroken; }
+        public ToolType GetToolType() { return _toolType; } // What type of tool is it? Going to be used when harvesting resource, (i.e. using an axe against a tree is different than using a pickaxe)
+        public float GetWeightModifier() { return _weightModifier; } // Any modifiers on the weight of the item
+        public float GetDamageModifier() { return _damageModifier; } //Any modifiers on the damage of the item
+        public float GetDurability() { return _durability; } //Get the items durability. < 0 and it's considered broken
+        public bool IsBroken() { return _isBroken; } //Is the durability less than 0?
         public string GetToolDescription() //Used to get info of the ToolBehavior, used in tool.cs concatinated with the base description.
         {
             string toolDescription =

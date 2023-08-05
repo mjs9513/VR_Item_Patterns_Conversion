@@ -15,13 +15,15 @@ namespace Item_PatternsTest_Actual.Behaviors
         protected string _description; // All items have a description
         protected float _weight; // All items have an associated Weight
 
+        //Methods for accessing the basic info of an item
         public virtual string GetName() { return _name; }
         public virtual int GetID() { return _id; }
         public virtual float GetWeight() { return _weight; }
+
         public virtual string GetBaseDescription()
-        { //Get any provided description for the item, then list the weight in the description.
-            string itemDescription = _description + 
-                  "\nWeight: " + GetWeight();
+        { //Provide the name and any provided description for the item
+            string itemDescription = "Name: " + _name +
+                    "\nDescription: " + _description;
             return itemDescription;
         }
 

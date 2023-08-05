@@ -17,11 +17,11 @@ namespace Item_PatternsTest_Actual.Behaviors
         public int Count() { return _count; }
         public bool Stackable() { return _stackable; }
 
-        public StackBehavior(int baseCount, bool stackable, int MAX_STACK)
+        public StackBehavior(int baseCount, bool stackable, int maxStack)
         {
             _count = baseCount;
             _stackable = stackable;
-            this.MAX_STACK = MAX_STACK;
+            MAX_STACK = maxStack;
         }
 
         public void ModifyStack(int modifier) //Standard method for modifying the count, takes the MAX_STACK into account

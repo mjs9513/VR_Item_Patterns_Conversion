@@ -12,11 +12,11 @@ namespace Item_PatternsTest_Actual
     {
         protected ToolBehavior toolBehavior;
 
-        //Methods designed to use the Template design pattern from Item.cs
+        //Methods designed to use the Template design pattern from Item.cs, get information from the associated behaviors of the item.
         protected override float CalculateItemWeight() { return itemBehavior.GetWeight() + toolBehavior.GetWeightModifier(); }
         protected override string GetItemDescription() { return toolBehavior.GetToolDescription(); }
 
-        //Access info from the ToolBehavior of this object
+        //Access individual info from the ToolBehavior of this object
         public float Damage() { return toolBehavior.GetDamage(); }
         public ToolType ToolType() { return toolBehavior.GetToolType(); }
         public DamageType DamageType() { return toolBehavior.GetDamageType(); }
