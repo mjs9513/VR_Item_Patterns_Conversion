@@ -55,13 +55,13 @@ namespace Item_PatternsTest_Actual.Factories
         {
             EnchantedTool enchantedTool = null;
             //check if the toEnchant tool has already been enchanted
-            if(toEnchant.GetEnchanted() == true)
+            /*if(toEnchant.GetEnchanted() == true)
             {
                 Console.Error.WriteLine("Unable to enchant item " + toEnchant.GetItemName() + " as it is already enchanted\n");
                 return toEnchant;
-            }
-            else
-            {
+            }*/
+            //else
+            //{
                 enchantedTool = new EnchantedTool(ItemAtlas.EnchantAtlas[enchant], toEnchant);
                 if (enchantedTool == null)
                 {
@@ -69,7 +69,7 @@ namespace Item_PatternsTest_Actual.Factories
                     return toEnchant;
                 }
                 return enchantedTool;
-            }
+            //}
         }
 
         public Resource ResourceFactory(ResourceType resourceType)

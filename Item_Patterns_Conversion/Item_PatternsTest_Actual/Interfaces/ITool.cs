@@ -9,13 +9,13 @@ namespace Item_PatternsTest_Actual.Interfaces
 {
     interface ITool
     {
-        public abstract float GetDurability();
-        public abstract bool isBroken();
-
         //Access individual info from the ToolBehavior of this object
-        public abstract float Damage();
-        public abstract ToolType ToolType();
-        public abstract DamageType DamageType();
+        public abstract float GetDurability();
+        public abstract float GetDamage();
+        public abstract DamageType GetDamageType();
+        public abstract ToolType GetToolType();
+
+        public abstract bool isBroken();
         public abstract void ModifyDurability(float modifier);
 
         //Output the damage of this tool

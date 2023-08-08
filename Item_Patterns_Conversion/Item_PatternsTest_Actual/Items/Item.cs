@@ -27,19 +27,21 @@ namespace Item_PatternsTest_Actual
         //Using the Template design pattern for calculating the weight of an item and getting the description of an item
         //If my understanding of Tempalte is correct, this fulfills it because 'CalculateItemWeight()' and 'GetItemDescription()' are abstract and left up to the child
         //class to implement, and 'GetWeight()' and 'GetDescription' call whatever the child class methods end up being.
-
-        //protected abstract float CalculateItemWeight();
-        protected abstract string GetItemStats();
+        public abstract string GetItemStats();
         public abstract string GetItemName(); // { return itemBehavior.GetName(); }
+        public abstract string GetItemBaseDescription(); 
         public abstract float GetItemWeight(); // { return CalculateItemWeight(); }
-        public virtual string GetDescription() {
-            return "Name: " + GetItemName() 
-            + itemBehavior.GetBaseDescription() 
-            + "\nWeight: " + GetItemWeight() //This feels out of place a bit, but can't think of a better way to incorporate it in basedescription or itemdescription.
-            + GetItemStats(); 
-        }
+        public abstract string GetDescription();
 
 
         public void ChangeName(string newName) { itemBehavior.ChangeName(newName); } //Test function, not meant for the final product.
     }
 }
+//protected abstract float CalculateItemWeight();
+/*public virtual string GetDescription()
+{
+    return "Name: " + GetItemName()
+    + itemBehavior.GetBaseDescription()
+    + "\nWeight: " + GetItemWeight() //This feels out of place a bit, but can't think of a better way to incorporate it in basedescription or itemdescription.
+    + GetItemStats();
+}*/

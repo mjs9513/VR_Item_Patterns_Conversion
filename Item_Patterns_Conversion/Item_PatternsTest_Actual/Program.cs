@@ -52,7 +52,9 @@ namespace Item_PatternsTest_Actual
             changingPickaxe.ChangeName("Steel Pickaxe"); //Chaning the name of the Steel Pickaxe back.
             Console.WriteLine(changingPickaxe.GetDescription());
 
-            Console.WriteLine("\nEnchanting the current Steel Pickaxe with the Fiery Enchant\n");
+            Console.WriteLine("\n*****ENCHANT TESTING*****\n");
+
+            Console.WriteLine("Enchanting the current Steel Pickaxe with the Fiery Enchant\n");
             changingPickaxe = ItemFactory.Instance.EnchantFactory(EnchantType.Fiery, changingPickaxe);
             Console.WriteLine(changingPickaxe.GetDescription());
 
