@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Item_PatternsTest_Actual
 {
     //Base Item behavior interface
-    interface IItem
+    interface IItemBehavior
     {
         //Defining methods that all items should have
         public string GetName();

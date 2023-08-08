@@ -2,6 +2,7 @@
 using Item_PatternsTest_Actual.Blueprints;
 using Item_PatternsTest_Actual.Enums;
 using Item_PatternsTest_Actual.Interfaces;
+using Item_PatternsTest_Actual.ProgramData;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,45 +21,13 @@ namespace Item_PatternsTest_Actual.Factories
     */
     class ItemFactory
     {
-        //Pre-defining items that can be crafted in the game. I assume these could be shifted to a separate file/class entirely and listed as static variables within.
-        //Or they could be created at runtime as necessary to reduce potential load times by having "ToolAtlas_Pickaxe" and "ResourceAtlas" be empty at the start, then
-        //as items need to be spawned, if they don't already exist when using the Factory methods they get created at runtime.
-
-        /// <summary>
-        /// Tool Template/Blueprint creation
-        /// </summary>
-        private static Dictionary<ToolQuality, ToolBlueprint> ToolAtlas_Pickaxe = new Dictionary<ToolQuality, ToolBlueprint>
-        {
-            {ToolQuality.Stone, new ToolBlueprint(new ItemBehavior("Stone Pickaxe", 1, "Gotta start somewhere, right?", 30f), new ToolBehavior(5f, DamageType.Piercing, ToolType.Pickaxe, 100)) },
-            {ToolQuality.Iron, new ToolBlueprint(new ItemBehavior("Iron Pickaxe", 2, "Simple but Sturdy", 25f), new ToolBehavior(10f, DamageType.Piercing, ToolType.Pickaxe, 100)) },
-            {ToolQuality.Steel, new ToolBlueprint(new ItemBehavior("Steel Pickaxe", 3, "Stronger than Iron!", 30f), new ToolBehavior(15f, DamageType.Piercing, ToolType.Pickaxe, 100)) },
-            {ToolQuality.Mythical, new ToolBlueprint(new ItemBehavior("Mythical Pickaxe", 4, "The strongest pickaxe imaginable!", 10f), new ToolBehavior(50f, DamageType.Piercing, ToolType.Pickaxe, 100)) },
-        };
-
-        /// <summary>
-        /// Stackable Types, predefining the different stack types that resource items can have.
-        /// </summary>
-        private static StackBehavior SingleStack = new StackBehavior(1, false, 1);
-        private static StackBehavior TenStackMax = new StackBehavior(1, true, 10);
-        private static StackBehavior TwentyFiveStackMax = new StackBehavior(1, true, 20);
-        private static StackBehavior FiftyStackMax = new StackBehavior(1, true, 50);
-
-        private static Dictionary<ResourceType, ResourceBlueprint> ResourceAtlas = new Dictionary<ResourceType, ResourceBlueprint>
-        {
-            {ResourceType.Wood, new ResourceBlueprint(new ItemBehavior("Wood", 5, "More than just a stick!", 3f), FiftyStackMax)},
-            {ResourceType.Stone, new ResourceBlueprint(new ItemBehavior("Stone", 6, "It's not just a boulder... It's a rock!", 5f), TwentyFiveStackMax)},
-            {ResourceType.Flint, new ResourceBlueprint(new ItemBehavior("Flint", 7, "It's a rock, but different!", 4f), TwentyFiveStackMax)},
-            {ResourceType.Clay, new ResourceBlueprint(new ItemBehavior("Clay", 8, "Earth you can mold!", 2f), TenStackMax)},
-        };
-
-        //Two factory methods, one for creating tools and one for resources.
         public static Tool ToolFactory(ToolQuality toolQuality, ToolType toolType)
         {
             Tool newTool = null;
             switch (toolType)
             {
                 case ToolType.Pickaxe:
-                    newTool = new Tool(ToolAtlas_Pickaxe[toolQuality].itemInfo, ToolAtlas_Pickaxe[toolQuality].toolInfo.Clone());
+                    newTool = new Tool(ItemAtlas.ToolAtlas_Pickaxe[toolQuality].itemInfo, ItemAtlas.ToolAtlas_Pickaxe[toolQuality].toolInfo.Clone());
                     break;
             }
             if(newTool == null)
@@ -67,12 +36,26 @@ namespace Item_PatternsTest_Actual.Factories
             }
             return newTool;
         }
+
+        public static EnchantedTool EnchantFactory(EnchantType enchant, Tool toEnchant)
+        {
+            EnchantedTool enchantedTool = null;
+
+            enchantedTool = new EnchantedTool(ItemAtlas.EnchantAtlas[enchant], toEnchant);
+
+            if (enchantedTool == null)
+            {
+                Console.Error.WriteLine("Unable to add enchant of type " + enchant + " to tool " + toEnchant.GetItemName());
+            }
+            return enchantedTool;
+        }
+
         public static Resource ResourceFactory(ResourceType resourceType)
         {
             Resource newResource = null;
 
             //Fill out newResource by using the ResourceAtlas to get fresh copies of the item that is being requested.
-            newResource = new Resource(resourceType, ResourceAtlas[resourceType].itemInfo, ResourceAtlas[resourceType].stackInfo.Clone());
+            newResource = new Resource(resourceType, ItemAtlas.ResourceAtlas[resourceType].itemInfo, ItemAtlas.ResourceAtlas[resourceType].stackInfo.Clone());
 
             if (newResource == null)
             {

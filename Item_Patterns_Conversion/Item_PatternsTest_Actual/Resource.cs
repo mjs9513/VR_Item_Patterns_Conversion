@@ -17,7 +17,8 @@ namespace Item_PatternsTest_Actual.Interfaces
         }
 
         //Methods designed to use the Template design pattern from Item.cs
-        protected override float CalculateItemWeight() { return itemBehavior.GetWeight() * stackBehavior.Count(); }
+        public override string GetItemName() { return itemBehavior.GetName(); }
+        public override float GetItemWeight() { return itemBehavior.GetWeight() * stackBehavior.Count(); }
         protected override string GetItemDescription() { return stackBehavior.GetStackDescription(); }
 
         //Methods for accessing/editing info in the StackBehavior

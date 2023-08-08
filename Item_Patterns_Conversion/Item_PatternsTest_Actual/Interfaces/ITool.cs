@@ -7,18 +7,19 @@ using System.Threading.Tasks;
 
 namespace Item_PatternsTest_Actual.Interfaces
 {
-    //Tool behavior interface
     interface ITool
     {
-        public abstract string GetToolDescription();
-        public abstract float GetDamage(); //return the damage + any damage modifier attached to the tool.
-        public abstract DamageType GetDamageType(); // retrieve the damage type
-        public abstract ToolType GetToolType(); 
-        public abstract float GetWeightModifier();
-        public abstract float GetDamageModifier();
         public abstract float GetDurability();
-        public abstract bool IsBroken();
+        public abstract bool isBroken();
+
+        //Access individual info from the ToolBehavior of this object
+        public abstract float Damage();
+        public abstract ToolType ToolType();
+        public abstract DamageType DamageType();
         public abstract void ModifyDurability(float modifier);
+
+        //Output the damage of this tool
+        public abstract float DealDamage(); 
 
     }
 }

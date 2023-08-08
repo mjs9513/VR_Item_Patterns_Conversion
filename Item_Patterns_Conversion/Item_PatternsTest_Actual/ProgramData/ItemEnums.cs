@@ -33,6 +33,12 @@ namespace Item_PatternsTest_Actual.Enums
         Bludgeoning // Hammer
     }
 
+    public enum EnchantType
+    {
+        Fiery,
+        Crushing,
+    }
+
     public enum ResourceType
     {
         Wood,

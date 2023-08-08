@@ -12,7 +12,7 @@ namespace Item_PatternsTest_Actual
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!\n");
-
+            Console.WriteLine("\n*****TOOL TESTING*****\n");
             //Manual Pickaxe Creation and Tests
             Console.WriteLine("Creating an Iron Pickaxe Item manually!");
             Item Iron_Pickaxe = new Tool(new ItemBehavior("Iron Pickaxe", 1, "Simple but Sturdy!", 25f), new ToolBehavior(10f, DamageType.Piercing, ToolType.Pickaxe, 100));
@@ -48,13 +48,26 @@ namespace Item_PatternsTest_Actual
             changingPickaxe = ItemFactory.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
             Console.WriteLine(changingPickaxe.GetDescription());
 
+            Console.WriteLine("\nChanging the name of 'Definitely NOT a Steel Pickaxe' back to Steel Pickaxe\n");
+            changingPickaxe.ChangeName("Steel Pickaxe"); //Chaning the name of the Steel Pickaxe back.
+            Console.WriteLine(changingPickaxe.GetDescription());
+
+            Console.WriteLine("\nEnchanting the current Steel Pickaxe with the Fiery Enchant\n");
+            changingPickaxe = ItemFactory.EnchantFactory(EnchantType.Fiery, changingPickaxe);
+            Console.WriteLine(changingPickaxe.GetDescription());
+
+            Console.WriteLine("\nEnchanting the Fiery Steel Pickaxe with the Crushing Enchant\n");
+            changingPickaxe = ItemFactory.EnchantFactory(EnchantType.Crushing, changingPickaxe);
+            Console.WriteLine(changingPickaxe.GetDescription());
+
+            Console.WriteLine("\n*****RESOURCE TESTING*****\n");
             //Using testItem to get items from the ResourceFactory (since Resource extends from Item) and testResource reference the data in testItem to edit it with Resource methods.
             Item testItem;
             Resource testResource;
 
             //Testing Wood and Stone resources.
             testItem = ItemFactory.ResourceFactory(ResourceType.Wood);
-            Console.WriteLine("\nCreated a piece of wood, printing out the description:\n");
+            Console.WriteLine("Created a piece of wood, printing out the description:\n");
             Console.WriteLine(testItem.GetDescription());
             Console.WriteLine("\nAdding more wood onto the stack of wood:\n");
             testResource = testItem as Resource; // storing the testItem as a Resource so it can be modified using Resource methods

@@ -12,7 +12,7 @@ namespace Item_PatternsTest_Actual.Behaviors
     //and don't change. I tested this out in Program.cs by changing the name of the Steel Pickaxe item, and that change was reflected to all over Steel Pickaxes
     //that were subsequently created and tested, so the data being referenced is the same for the steel pickaxes.
     //Other Behaviors I created for this use a MemberwiseClone() function and the base items in ItemFactory.cs act as prototypes for future items created.
-    public class ItemBehavior : IItem
+    public class ItemBehavior : IItemBehavior
     {
         protected string _name; // All items have an associated name 
         protected int _id; // All items have an associated ID 
@@ -27,8 +27,7 @@ namespace Item_PatternsTest_Actual.Behaviors
 
         public virtual string GetBaseDescription()
         { //Provide the name and any provided description for the item
-            string itemDescription = "Name: " + _name +
-                    "\nDescription: " + _description;
+            string itemDescription = "\nDescription: " + _description;
             return itemDescription;
         }
 
