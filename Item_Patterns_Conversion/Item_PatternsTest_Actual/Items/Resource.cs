@@ -17,17 +17,10 @@ namespace Item_PatternsTest_Actual.Interfaces
         }
 
         //Methods designed to use the Template design pattern from Item.cs
-        public override string GetItemName() { return itemBehavior.GetName(); }
-        public override string GetItemBaseDescription() { return itemBehavior.GetBaseDescription(); }
-        public override float GetItemWeight() { return itemBehavior.GetWeight() * stackBehavior.Count(); }
+        public override string GetItemName() { return itemBehavior.Name(); }
+        public override string GetItemBaseDescription() { return itemBehavior.BaseDescription(); }
+        public override float GetItemWeight() { return itemBehavior.Weight() * stackBehavior.Count(); }
         public override string GetItemStats() { return stackBehavior.GetStackStats(); }
-        public override string GetDescription()
-        {
-            return "Name: " + GetItemName()
-            + GetItemBaseDescription()
-            + "\nWeight: " + GetItemWeight() //The implementation of GetItemWeight varies between Tools and Resources, this is one of the reasons I abstracted out "GetDescription" from the base Item Class.
-            + GetItemStats();
-        }
 
         //Methods for accessing/editing info in the StackBehavior
         public void ModifyStack(int modifier) //Standard method for modifying the count, takes the MAX_STACK into account
@@ -35,7 +28,6 @@ namespace Item_PatternsTest_Actual.Interfaces
             if (stackBehavior.Stackable() == true)
                 stackBehavior.ModifyStack(modifier);
         }
-
         public void SetCount(int newCount) //blanket method for overriding the count for an item
         {
             stackBehavior.SetCount(newCount);

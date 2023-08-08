@@ -15,12 +15,13 @@ namespace Item_PatternsTest_Actual.Factories
     //Built with the goal of a Factory/Abstract Factory design pattern in mind
 
     /*I imagine if I wanted to implement something like Object Pooling, I would create Pools of base Items and 
-    *them through the factory to assign them the different items from the "Atlases" I made to change their type, like I did with the tests in Program.cs
+    *run them through the factory to assign them the different items from the "Atlases" in ItemAtlas.cs to change their type, as seen in Program.cs
     *and then when I delete the item in game by either adding it to the player's inventory or despawning it, I nullify the Item and return it to
-    *a list/collection of available items.
+    *a list/collection of available items in the pool.
     */
     class ItemFactory
     {
+        //Establishing ItemFactory to follow a singleton design pattern
         private ItemFactory() { }
         private static ItemFactory instance = null;
         public static ItemFactory Instance
@@ -89,6 +90,7 @@ namespace Item_PatternsTest_Actual.Factories
 }
 
 //Original Item Factory setup before I slept on it and had a much better idea:
+
 /// <summary>
 /// Tools
 /// </summary>

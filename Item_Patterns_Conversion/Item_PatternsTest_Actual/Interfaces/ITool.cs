@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 namespace Item_PatternsTest_Actual.Interfaces
 {
     interface ITool
-    {
+    {   
         //Access individual info from the ToolBehavior of this object
         public abstract float GetDurability();
         public abstract float GetDamage();
         public abstract DamageType GetDamageType();
         public abstract ToolType GetToolType();
-
         public abstract bool isBroken();
+
+        //Be able to modify the durability of a ToolBehavior.
         public abstract void ModifyDurability(float modifier);
 
         //Output the damage of this tool

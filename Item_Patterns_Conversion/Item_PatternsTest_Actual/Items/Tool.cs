@@ -12,36 +12,15 @@ namespace Item_PatternsTest_Actual
 {
     public class Tool : Item, ITool
     {
+        //Using the Strategy Pattern, this handles the basic info of the tool itself
         protected ToolBehavior toolBehavior;
 
-        //public virtual bool GetEnchanted() { return enchanted; }
-
-        //Tool Constructor
+        //Tool Constructors
         public Tool(ItemBehavior itemInfo, ToolBehavior toolInfo) : base(itemInfo, new StackBehavior(1, false, 1))
         {
             this.toolBehavior = toolInfo;
         }
-
         public Tool(){}
-
-        //Methods designed to use the Template design pattern from Item.cs, get information from the associated behaviors of the item.
-        public override string GetItemName() { return itemBehavior.GetName(); }
-        public override string GetItemBaseDescription() { return itemBehavior.GetBaseDescription(); }
-        public override float GetItemWeight() { return itemBehavior.GetWeight(); }
-        public override string GetItemStats() {
-            string toolStats =
-                  "\nDurability: " + GetDurability() + "/100"
-                + "\nDamage: " + toolBehavior.GetDamage()
-                + "\nDamage Type: " + toolBehavior.GetDamageType();
-            return toolStats;
-        }
-        public override string GetDescription()
-        {
-            return "Name: " + GetItemName()
-            + GetItemBaseDescription()
-            + "\nWeight: " + GetItemWeight() //The implementation of GetItemWeight varies between Tools and Resources, this is one of the reasons I abstracted out "GetDescription" from the base Item Class.
-            + GetItemStats();
-        }
 
         //Access individual info from the ToolBehavior of this object
         public virtual float GetDurability() { return toolBehavior.GetDurability(); }
@@ -54,6 +33,18 @@ namespace Item_PatternsTest_Actual
         public virtual void ModifyDurability(float modifier)
         {
             toolBehavior.ModifyDurability(modifier);
+        }
+
+        //Methods designed to use the Template design pattern from Item.cs, get information from the associated behaviors of the item.
+        public override string GetItemName() { return itemBehavior.Name(); }
+        public override string GetItemBaseDescription() { return itemBehavior.BaseDescription(); }
+        public override float GetItemWeight() { return itemBehavior.Weight(); }
+        public override string GetItemStats() {
+            string toolStats =
+                  "\nDurability: " + GetDurability() + "/100"
+                + "\nDamage: " + toolBehavior.GetDamage()
+                + "\nDamage Type: " + toolBehavior.GetDamageType();
+            return toolStats;
         }
 
         //Output the damage of this tool
@@ -69,17 +60,3 @@ namespace Item_PatternsTest_Actual
         }
     }
 }
-
-/*public bool ApplyEnchantment(EnchantmentBlueprint newEnchant)
-{
-    if (enchanted == false)
-    {//This item has not been enchanted with this enchantment yet, apply it.
-        //Apply the enchantment effects to this item.
-        appliedEnchantmentName += newEnchant._enchantmentName + " ";
-        appliedDamageModifier += newEnchant._damageModifier;
-        appliedWeightModifier += newEnchant._weightModifier;
-        enchanted = true;
-        return true;
-    }
-    return false;
-}*/

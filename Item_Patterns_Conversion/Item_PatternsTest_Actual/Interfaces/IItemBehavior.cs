@@ -10,10 +10,10 @@ namespace Item_PatternsTest_Actual
     interface IItemBehavior
     {
         //Defining methods that all items should have
-        public string GetName();
+        public string Name();
         public int GetID();
-        public float GetWeight();
-        public string GetBaseDescription();
+        public float Weight();
+        public string BaseDescription();
 
     }
 }

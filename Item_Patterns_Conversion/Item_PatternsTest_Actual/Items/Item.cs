@@ -1,4 +1,5 @@
 ﻿using Item_PatternsTest_Actual.Behaviors;
+using Item_PatternsTest_Actual.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Item_PatternsTest_Actual
 {
     //Originally programmed with the Prototype Design Pattern in mind, but I don't think it qualifies as Prototype anymore.
     //This class serves as the base for items in the game. Tool and Resource extend off of it
-    public abstract class Item
+    public abstract class Item : IDescribable
     {
         protected ItemBehavior itemBehavior; //Using the Strategy Pattern, this handles the basic info of the item such as name, description, weight
         protected StackBehavior stackBehavior; //Using the Strategy Pattern, this handles if an item is stackable and what the total weight is.
@@ -24,24 +25,26 @@ namespace Item_PatternsTest_Actual
         }
         public Item() { } //Blank constructor.
 
-        //Using the Template design pattern for calculating the weight of an item and getting the description of an item
-        //If my understanding of Tempalte is correct, this fulfills it because 'CalculateItemWeight()' and 'GetItemDescription()' are abstract and left up to the child
-        //class to implement, and 'GetWeight()' and 'GetDescription' call whatever the child class methods end up being.
+        //Using the Template design pattern for getting the description information of an item
+        //If my understanding of Tempalte is correct, this fulfills it because GetItemName, GetItemWeight, GetItemStats, and GetItemBaseDescription are abstract and left up to the child
+        //class to implement, and GetDescription defined a skeleton that calls whatever the child class methods end up being.
+        public abstract string GetItemName();
+        public abstract float GetItemWeight();
         public abstract string GetItemStats();
-        public abstract string GetItemName(); // { return itemBehavior.GetName(); }
         public abstract string GetItemBaseDescription(); 
-        public abstract float GetItemWeight(); // { return CalculateItemWeight(); }
-        public abstract string GetDescription();
+        public virtual string GetDescription()
+        {
+            string itemDescription = "";
+            itemDescription +=
+                "Name: " + GetItemName()
+                + GetItemBaseDescription()
+                +"\nWeight: " + GetItemWeight()
+                + GetItemStats();
+
+            return itemDescription;
+        }
 
 
         public void ChangeName(string newName) { itemBehavior.ChangeName(newName); } //Test function, not meant for the final product.
     }
 }
-//protected abstract float CalculateItemWeight();
-/*public virtual string GetDescription()
-{
-    return "Name: " + GetItemName()
-    + itemBehavior.GetBaseDescription()
-    + "\nWeight: " + GetItemWeight() //This feels out of place a bit, but can't think of a better way to incorporate it in basedescription or itemdescription.
-    + GetItemStats();
-}*/
