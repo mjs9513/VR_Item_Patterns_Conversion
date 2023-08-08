@@ -21,7 +21,7 @@ namespace Item_PatternsTest_Actual
 
             //Steel pickaxe creation with the factory
             Console.WriteLine("\nCreating a Steel Pickaxe with the Item Factory\n");
-            Tool changingPickaxe = ItemFactory.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
+            Tool changingPickaxe = ItemFactory.Instance.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
             Console.WriteLine(changingPickaxe.GetDescription());
             Console.WriteLine("\nMaking the Steel Pickaxe lose durability\n");
             changingPickaxe.ModifyDurability(-10f);
@@ -40,12 +40,12 @@ namespace Item_PatternsTest_Actual
 
             //changing the Steel pickaxe to Mythical and testing it
             Console.WriteLine("\nChanging the Steel Pickaxe to a Mythical Pickaxe\n");
-            changingPickaxe = ItemFactory.ToolFactory(ToolQuality.Mythical, ToolType.Pickaxe);
+            changingPickaxe = ItemFactory.Instance.ToolFactory(ToolQuality.Mythical, ToolType.Pickaxe);
             Console.WriteLine(changingPickaxe.GetDescription());
 
             //Changing the Mythical Pickaxe back to Steel
             Console.WriteLine("\nChanging the Mythical Pickaxe back to a Steel One\n");
-            changingPickaxe = ItemFactory.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
+            changingPickaxe = ItemFactory.Instance.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
             Console.WriteLine(changingPickaxe.GetDescription());
 
             Console.WriteLine("\nChanging the name of 'Definitely NOT a Steel Pickaxe' back to Steel Pickaxe\n");
@@ -53,11 +53,16 @@ namespace Item_PatternsTest_Actual
             Console.WriteLine(changingPickaxe.GetDescription());
 
             Console.WriteLine("\nEnchanting the current Steel Pickaxe with the Fiery Enchant\n");
-            changingPickaxe = ItemFactory.EnchantFactory(EnchantType.Fiery, changingPickaxe);
+            changingPickaxe = ItemFactory.Instance.EnchantFactory(EnchantType.Fiery, changingPickaxe);
             Console.WriteLine(changingPickaxe.GetDescription());
 
             Console.WriteLine("\nEnchanting the Fiery Steel Pickaxe with the Crushing Enchant\n");
-            changingPickaxe = ItemFactory.EnchantFactory(EnchantType.Crushing, changingPickaxe);
+            changingPickaxe = ItemFactory.Instance.EnchantFactory(EnchantType.Crushing, changingPickaxe);
+            Console.WriteLine(changingPickaxe.GetDescription());
+
+            //Changing the Fiery Steel Pickaxe back to a regular Steel Pickaxe
+            Console.WriteLine("\nChanging the Fiery Steel Pickaxe back to a regular Steel Pickaxe\n");
+            changingPickaxe = ItemFactory.Instance.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
             Console.WriteLine(changingPickaxe.GetDescription());
 
             Console.WriteLine("\n*****RESOURCE TESTING*****\n");
@@ -66,7 +71,7 @@ namespace Item_PatternsTest_Actual
             Resource testResource;
 
             //Testing Wood and Stone resources.
-            testItem = ItemFactory.ResourceFactory(ResourceType.Wood);
+            testItem = ItemFactory.Instance.ResourceFactory(ResourceType.Wood);
             Console.WriteLine("Created a piece of wood, printing out the description:\n");
             Console.WriteLine(testItem.GetDescription());
             Console.WriteLine("\nAdding more wood onto the stack of wood:\n");
@@ -75,7 +80,7 @@ namespace Item_PatternsTest_Actual
             Console.WriteLine(testItem.GetDescription()); //Printing back out the testItem.GetDescription()
 
             Console.WriteLine("\nChanging the wood to stone\n");
-            testItem = ItemFactory.ResourceFactory(ResourceType.Stone);
+            testItem = ItemFactory.Instance.ResourceFactory(ResourceType.Stone);
             Console.WriteLine(testItem.GetDescription());
             Console.WriteLine("\nAdding more stone onto the stack of stone:\n");
             testResource = testItem as Resource; // Re-storing the testItem as a Resource so it changes to stone and can be modified using Resource methods
@@ -83,7 +88,7 @@ namespace Item_PatternsTest_Actual
             Console.WriteLine(testItem.GetDescription());
 
             Console.WriteLine("\nChanging stone back into  wood\n");
-            testItem = ItemFactory.ResourceFactory(ResourceType.Wood);
+            testItem = ItemFactory.Instance.ResourceFactory(ResourceType.Wood);
             Console.WriteLine(testItem.GetDescription()); 
         }
     }

@@ -14,11 +14,11 @@ namespace Item_PatternsTest_Actual
     {
         protected ToolBehavior toolBehavior;
 
-        List<EnchantmentBlueprint> appliedEnchantments;
-
-        protected string appliedEnchantmentNames = "";
-        protected float appliedDamageModifiers = 0;
-        protected float appliedWeightModifiers = 0;
+        protected string appliedEnchantmentName = "";
+        protected float appliedDamageModifier = 0;
+        protected float appliedWeightModifier = 0;
+        protected bool enchanted = false;
+        public virtual bool GetEnchanted() { return enchanted; }
 
         //Tool Constructor
         public Tool(ItemBehavior itemInfo, ToolBehavior toolInfo) : base(itemInfo, new StackBehavior(1, false, 1))
@@ -30,32 +30,35 @@ namespace Item_PatternsTest_Actual
 
         public bool ApplyEnchantment(EnchantmentBlueprint newEnchant)
         {
-            if (appliedEnchantments == null)
-                appliedEnchantments = new List<EnchantmentBlueprint>();
-            if(appliedEnchantments.Contains(newEnchant) == false)
+            if (enchanted == false)
             {//This item has not been enchanted with this enchantment yet, apply it.
-                appliedEnchantments.Add(newEnchant);
                 //Apply the enchantment effects to this item.
-                appliedEnchantmentNames += newEnchant._enchantmentName + " ";
-                appliedDamageModifiers += newEnchant._damageModifier;
-                appliedWeightModifiers += newEnchant._weightModifier;
+                appliedEnchantmentName += newEnchant._enchantmentName + " ";
+                appliedDamageModifier += newEnchant._damageModifier;
+                appliedWeightModifier += newEnchant._weightModifier;
+                enchanted = true;
                 return true;
             }
             return false;
         }
 
         //Methods designed to use the Template design pattern from Item.cs, get information from the associated behaviors of the item.
-        public override string GetItemName() { return appliedEnchantmentNames + itemBehavior.GetName(); }
-        public override float GetItemWeight() { return itemBehavior.GetWeight() + appliedWeightModifiers; }
-        protected override string GetItemDescription() { return toolBehavior.GetToolDescription(); }
-       
+        public override string GetItemName() { return appliedEnchantmentName + itemBehavior.GetName(); }
+        public override float GetItemWeight() { return itemBehavior.GetWeight() + appliedWeightModifier; }
+        protected override string GetItemStats() {
+            string toolDescription =
+                "\nDurability: " + GetDurability() + "/100"
+                + "\nDamage: " + (toolBehavior.GetDamage() + appliedDamageModifier)
+                + "\nDamage Type: " + toolBehavior.GetDamageType();
+            return toolDescription;
+        }
+
         
-        //public virtual ToolBehavior GetToolBehavior() { return toolBehavior; }
         public virtual float GetDurability() { return toolBehavior.GetDurability(); }
         public virtual bool isBroken() { return toolBehavior.IsBroken(); }
 
         //Access individual info from the ToolBehavior of this object
-        public virtual float Damage() { return toolBehavior.GetDamage() + appliedDamageModifiers; }
+        public virtual float Damage() { return toolBehavior.GetDamage() + appliedDamageModifier; }
         public virtual ToolType ToolType() { return toolBehavior.GetToolType(); }
         public virtual DamageType DamageType() { return toolBehavior.GetDamageType(); }
 

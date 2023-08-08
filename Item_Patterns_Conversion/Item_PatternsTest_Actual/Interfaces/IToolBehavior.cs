@@ -10,7 +10,6 @@ namespace Item_PatternsTest_Actual.Interfaces
     //Tool behavior interface
     interface IToolBehavior
     {
-        public abstract string GetToolDescription();
         public abstract float GetDamage(); //return the damage + any damage modifier attached to the tool.
         public abstract DamageType GetDamageType(); // retrieve the damage type
         public abstract ToolType GetToolType(); 
@@ -18,5 +17,6 @@ namespace Item_PatternsTest_Actual.Interfaces
         public abstract bool IsBroken();
         public abstract void ModifyDurability(float modifier);
 
+        //public abstract string GetToolDescription();
     }
 }

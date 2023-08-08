@@ -21,7 +21,21 @@ namespace Item_PatternsTest_Actual.Factories
     */
     class ItemFactory
     {
-        public static Tool ToolFactory(ToolQuality toolQuality, ToolType toolType)
+        private ItemFactory() { }
+        private static ItemFactory instance = null;
+        public static ItemFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new ItemFactory();
+                }
+                return instance;
+            }
+        }
+
+        public Tool ToolFactory(ToolQuality toolQuality, ToolType toolType)
         {
             Tool newTool = null;
             switch (toolType)
@@ -37,20 +51,28 @@ namespace Item_PatternsTest_Actual.Factories
             return newTool;
         }
 
-        public static EnchantedTool EnchantFactory(EnchantType enchant, Tool toEnchant)
+        public Tool EnchantFactory(EnchantType enchant, Tool toEnchant)
         {
             EnchantedTool enchantedTool = null;
-
-            enchantedTool = new EnchantedTool(ItemAtlas.EnchantAtlas[enchant], toEnchant);
-
-            if (enchantedTool == null)
+            //check if the toEnchant tool has already been enchanted
+            if(toEnchant.GetEnchanted() == true)
             {
-                Console.Error.WriteLine("Unable to add enchant of type " + enchant + " to tool " + toEnchant.GetItemName());
+                Console.Error.WriteLine("Unable to enchant item " + toEnchant.GetItemName() + " as it is already enchanted\n");
+                return toEnchant;
             }
-            return enchantedTool;
+            else
+            {
+                enchantedTool = new EnchantedTool(ItemAtlas.EnchantAtlas[enchant], toEnchant);
+                if (enchantedTool == null)
+                {
+                    Console.Error.WriteLine("Unable to add enchant of type " + enchant + " to tool " + toEnchant.GetItemName());
+                    return toEnchant;
+                }
+                return enchantedTool;
+            }
         }
 
-        public static Resource ResourceFactory(ResourceType resourceType)
+        public Resource ResourceFactory(ResourceType resourceType)
         {
             Resource newResource = null;
 

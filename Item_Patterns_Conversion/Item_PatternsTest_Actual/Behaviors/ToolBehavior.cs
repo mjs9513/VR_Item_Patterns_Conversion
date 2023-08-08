@@ -22,15 +22,6 @@ namespace Item_PatternsTest_Actual.Behaviors
         public ToolType GetToolType() { return _toolType; } // What type of tool is it? Going to be used when harvesting resource, (i.e. using an axe against a tree is different than using a pickaxe)
         public float GetDurability() { return _durability; } //Get the items durability. < 0 and it's considered broken
         public bool IsBroken() { return _isBroken; } //Is the durability less than 0?
-        public string GetToolDescription() //Used to get info of the ToolBehavior, used in tool.cs concatinated with the base description.
-        {
-            string toolDescription =
-                  "\nDurability: " + GetDurability() + "/100"
-                + "\nDamage: " + GetDamage()
-                + "\nDamage Type: " + GetDamageType();
-
-            return toolDescription;
-        }
 
         public ToolBehavior(float damage, DamageType damageType, ToolType toolType, float durability)
         {

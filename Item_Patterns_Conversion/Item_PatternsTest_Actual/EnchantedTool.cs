@@ -18,16 +18,14 @@ namespace Item_PatternsTest_Actual.Behaviors
 
         public EnchantedTool(EnchantmentBlueprint enchant, Tool baseTool)
         {
-            this.baseTool = baseTool;
             baseTool.ApplyEnchantment(enchant);
+            this.baseTool = baseTool;
             _enchantName = enchant._enchantmentName;
             _damageModifier = Math.Max(enchant._damageModifier, 0);//prevent the weight modifier from going below 0
             _weightModifier = Math.Max(enchant._weightModifier, 0);//prevent the damage modifier from going below 0 
         }
-        public override string GetItemName()
-        {
-            return _enchantName + baseTool.GetItemName();
-        }
+        public override string GetItemName() { return _enchantName + baseTool.GetItemName(); }
+        public override bool GetEnchanted() { return baseTool.GetEnchanted();}
         public override float GetItemWeight() { return baseTool.GetItemWeight() + _weightModifier; }
         public override float GetDurability() { return baseTool.GetDurability(); }
         public override bool isBroken() { return baseTool.isBroken(); }

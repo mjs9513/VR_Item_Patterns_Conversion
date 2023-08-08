@@ -29,14 +29,14 @@ namespace Item_PatternsTest_Actual
         //class to implement, and 'GetWeight()' and 'GetDescription' call whatever the child class methods end up being.
 
         //protected abstract float CalculateItemWeight();
-        protected abstract string GetItemDescription();
+        protected abstract string GetItemStats();
         public abstract string GetItemName(); // { return itemBehavior.GetName(); }
         public abstract float GetItemWeight(); // { return CalculateItemWeight(); }
         public virtual string GetDescription() {
             return "Name: " + GetItemName() 
             + itemBehavior.GetBaseDescription() 
             + "\nWeight: " + GetItemWeight() //This feels out of place a bit, but can't think of a better way to incorporate it in basedescription or itemdescription.
-            + GetItemDescription(); 
+            + GetItemStats(); 
         }
 
 
