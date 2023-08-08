@@ -19,7 +19,7 @@ namespace Item_PatternsTest_Actual.Interfaces
         //Methods designed to use the Template design pattern from Item.cs
         public override string GetItemName() { return itemBehavior.GetName(); }
         public override float GetItemWeight() { return itemBehavior.GetWeight() * stackBehavior.Count(); }
-        protected override string GetItemStats() { return stackBehavior.GetStackDescription(); }
+        protected override string GetItemStats() { return stackBehavior.GetStackStats(); }
 
         //Methods for accessing/editing info in the StackBehavior
         public void ModifyStack(int modifier) //Standard method for modifying the count, takes the MAX_STACK into account

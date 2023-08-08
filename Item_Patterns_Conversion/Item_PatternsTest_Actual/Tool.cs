@@ -46,11 +46,11 @@ namespace Item_PatternsTest_Actual
         public override string GetItemName() { return appliedEnchantmentName + itemBehavior.GetName(); }
         public override float GetItemWeight() { return itemBehavior.GetWeight() + appliedWeightModifier; }
         protected override string GetItemStats() {
-            string toolDescription =
-                "\nDurability: " + GetDurability() + "/100"
+            string toolStats =
+                  "\nDurability: " + GetDurability() + "/100"
                 + "\nDamage: " + (toolBehavior.GetDamage() + appliedDamageModifier)
                 + "\nDamage Type: " + toolBehavior.GetDamageType();
-            return toolDescription;
+            return toolStats;
         }
 
         
