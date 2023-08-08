@@ -17,10 +17,10 @@ namespace Item_PatternsTest_Actual.Behaviors
         private float _durability; //track the health of the item itself.
         private bool _isBroken; //Is the tool broken or not
 
-        public float GetDamage() { return _damage; } //return the damage + any damage modifier attached to the tool.
-        public DamageType GetDamageType() { return _damageType; } // retrieve the damage type
-        public ToolType GetToolType() { return _toolType; } // What type of tool is it? Going to be used when harvesting resource, (i.e. using an axe against a tree is different than using a pickaxe)
-        public float GetDurability() { return _durability; } //Get the items durability. < 0 and it's considered broken
+        public float Damage() { return _damage; } //return the damage
+        public DamageType DamageType() { return _damageType; } // retrieve the damage type
+        public ToolType ToolType() { return _toolType; } // What type of tool is it? Going to be used when harvesting resource, (i.e. using an axe against a tree is different than using a pickaxe)
+        public float Durability() { return _durability; } //Get the items durability. < 0 and it's considered broken
         public bool IsBroken() { return _isBroken; } //Is the durability less than 0?
 
         public ToolBehavior(float damage, DamageType damageType, ToolType toolType, float durability)

@@ -10,7 +10,9 @@ using System.Threading.Tasks;
 namespace Item_PatternsTest_Actual.Behaviors
 {
     //Designed with the Decorator Design pattern in mind
-    public class EnchantedTool : Tool, ITool
+    //ITool is added to ensure the appropriate tool methods are overloaded and re-routed to baseTool. Alternatively, EnchantedTool could
+    //Potentially inherit just from the base Item class and still implement the ITool interface potentially? Probably worth testing.
+    public class EnchantedTool : Tool, ITool 
     {
         //Base tool to be used with ITool methods
         protected Tool baseTool; 
@@ -23,7 +25,6 @@ namespace Item_PatternsTest_Actual.Behaviors
         //Enchanted Tool Contructors
         public EnchantedTool(EnchantmentBlueprint enchant, Tool baseTool)
         {
-            //baseTool.ApplyEnchantment(enchant);
             this.baseTool = baseTool;
             _enchantName = enchant._enchantmentName;
             _damageModifier = Math.Max(enchant._damageModifier, 0);//prevent the weight modifier from going below 0
@@ -66,7 +67,6 @@ namespace Item_PatternsTest_Actual.Behaviors
     }
 }
 /*
-public override bool GetEnchanted() { return baseTool.GetEnchanted();}
 public void ModifyWeightModifier(float modifier) { _weightModifier = Math.Max(_weightModifier + modifier, 0); } //prevent the weight modifier from going below 0
 public void ModifyDamageModifier(float modifier) { _damageModifier = Math.Max(_damageModifier + modifier, 0); } //prevent the damage modifier from going below 0 
 */

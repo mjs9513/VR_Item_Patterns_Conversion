@@ -8,10 +8,11 @@ namespace Item_PatternsTest_Actual.Interfaces
 {
     interface IDescribable
     {
+        //Methods necessary for providing the descriptive information of an item.
+        //Used with the Template design pattern implemented in Item.cs
         public abstract string GetItemName();
         public abstract string GetItemBaseDescription();
         public abstract float GetItemWeight();
         public abstract string GetItemStats();
-        //public abstract string GetDescription();
     }
 }

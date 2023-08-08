@@ -11,7 +11,7 @@ namespace Item_PatternsTest_Actual
     {
         //Defining methods that all items should have
         public string Name();
-        public int GetID();
+        public int ID();
         public float Weight();
         public string BaseDescription();
 

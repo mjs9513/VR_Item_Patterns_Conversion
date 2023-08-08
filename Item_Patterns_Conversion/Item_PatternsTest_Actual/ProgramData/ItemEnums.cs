@@ -25,7 +25,7 @@ namespace Item_PatternsTest_Actual.Enums
     }
 
     public enum DamageType
-    {
+    {//Different damage types will yield different results, or be more/less effective against certain entities
         None,
         Piercing, //Pickaxe
         Cultivating, //Cultivator
@@ -34,13 +34,13 @@ namespace Item_PatternsTest_Actual.Enums
     }
 
     public enum EnchantType
-    {
+    {//Types of enchants that can be applied to Tools
         Fiery,
         Crushing,
     }
 
     public enum ResourceType
-    {
+    {//Different Resource items that the player can pick up
         Wood,
         Stone,
         Flint,

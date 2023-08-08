@@ -11,7 +11,7 @@ namespace Item_PatternsTest_Actual.ProgramData
 {
     public static class ItemAtlas
     {
-        //Pre-defining items that can be crafted in the game.
+        //Pre-defining items that can be crafted in the game. All accessible through the static ItemAtlas class, but primarily used in ItemFactory.cs
 
         /// <summary>
         /// Tool Template/Blueprint creation

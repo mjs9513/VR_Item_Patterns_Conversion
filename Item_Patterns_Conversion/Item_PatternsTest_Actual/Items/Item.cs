@@ -16,7 +16,7 @@ namespace Item_PatternsTest_Actual
         protected StackBehavior stackBehavior; //Using the Strategy Pattern, this handles if an item is stackable and what the total weight is.
 
         //Accessors for information from itemBehavior
-        public int GetID() { return itemBehavior.GetID(); }
+        public int GetID() { return itemBehavior.ID(); }
 
         public Item(ItemBehavior itemInfo, StackBehavior stackInfo)
         {
@@ -45,6 +45,6 @@ namespace Item_PatternsTest_Actual
         }
 
 
-        public void ChangeName(string newName) { itemBehavior.ChangeName(newName); } //Test function, not meant for the final product.
+        public void ChangeName(string newName) { itemBehavior.ChangeName(newName); } //Test function, not meant for the final product. Used for testing the Flyweight design pattern (See ItemBehavior.cs)
     }
 }
