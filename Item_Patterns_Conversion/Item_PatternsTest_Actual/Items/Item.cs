@@ -17,7 +17,7 @@ namespace Item_PatternsTest_Actual
 
         //Accessors for information from itemBehavior
         public int GetID() { return itemBehavior.ID(); }
-
+        
         public Item(ItemBehavior itemInfo, StackBehavior stackInfo)
         {
             this.itemBehavior = itemInfo;

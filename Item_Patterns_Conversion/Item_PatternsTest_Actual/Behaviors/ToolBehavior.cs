@@ -16,12 +16,19 @@ namespace Item_PatternsTest_Actual.Behaviors
         private ToolType _toolType; // specify the type of tool this is
         private float _durability; //track the health of the item itself.
         private bool _isBroken; //Is the tool broken or not
+        
+
+        //Temporary solution until I have more time to work in chaining multiple enchantments to a tool object potentially.
+        private bool _isEnchanted = false;
+        public bool EnchantedStatus() { return _isEnchanted; }
+        public void ModifyEnchantedStatus(bool enchant) { _isEnchanted = enchant; }
+
 
         public float Damage() { return _damage; } //return the damage
         public DamageType DamageType() { return _damageType; } // retrieve the damage type
         public ToolType ToolType() { return _toolType; } // What type of tool is it? Going to be used when harvesting resource, (i.e. using an axe against a tree is different than using a pickaxe)
         public float Durability() { return _durability; } //Get the items durability. < 0 and it's considered broken
-        public bool IsBroken() { return _isBroken; } //Is the durability less than 0?
+        public bool BrokenStatus() { return _isBroken; } //Is the durability less than 0?
 
         public ToolBehavior(float damage, DamageType damageType, ToolType toolType, float durability)
         {

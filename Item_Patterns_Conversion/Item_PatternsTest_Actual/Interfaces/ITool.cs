@@ -14,7 +14,7 @@ namespace Item_PatternsTest_Actual.Interfaces
         public abstract float GetDamage();
         public abstract DamageType GetDamageType();
         public abstract ToolType GetToolType();
-        public abstract bool isBroken();
+        public abstract bool IsBroken();
 
         //Be able to modify the durability of a ToolBehavior.
         public abstract void ModifyDurability(float modifier);

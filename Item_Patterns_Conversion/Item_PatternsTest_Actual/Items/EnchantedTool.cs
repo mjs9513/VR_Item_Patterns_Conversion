@@ -26,6 +26,7 @@ namespace Item_PatternsTest_Actual.Behaviors
         public EnchantedTool(EnchantmentBlueprint enchant, Tool baseTool)
         {
             this.baseTool = baseTool;
+            this.baseTool.ModifyEnchantedStatus(true); //Set the enchanted status to True, temporary solution until I have more time to figure out a better way to chain enchants together.
             _enchantName = enchant._enchantmentName;
             _damageModifier = Math.Max(enchant._damageModifier, 0);//prevent the weight modifier from going below 0
             _weightModifier = Math.Max(enchant._weightModifier, 0);//prevent the damage modifier from going below 0 
@@ -37,11 +38,15 @@ namespace Item_PatternsTest_Actual.Behaviors
         public override float GetDamage() { return baseTool.GetDamage() + _damageModifier; }
         public override DamageType GetDamageType() { return baseTool.GetDamageType(); }
         public override ToolType GetToolType() { return baseTool.GetToolType(); }
-        public override bool isBroken() { return baseTool.isBroken(); }
+        public override bool IsBroken() { return baseTool.IsBroken(); }
         public override void ModifyDurability(float modifier)
         {
             baseTool.ModifyDurability(modifier);
         }
+
+        //Return the enchanted status of the baseTool, temporary solution until I have more time to figure out a better way to chain enchants together.
+        public override bool IsEnchanted() { return baseTool.IsEnchanted(); }
+
 
         //Methods designed for the Template design pattern from Item.cs, get information from the associated behaviors of the item.
         public override string GetItemName() { return _enchantName + " " + baseTool.GetItemName(); }

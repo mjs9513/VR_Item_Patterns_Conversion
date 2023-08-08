@@ -1,7 +1,7 @@
 ﻿using Item_PatternsTest_Actual.Behaviors;
 using Item_PatternsTest_Actual.Blueprints;
 using Item_PatternsTest_Actual.Enums;
-using Item_PatternsTest_Actual.Interfaces;
+using Item_PatternsTest_Actual.Items;
 using Item_PatternsTest_Actual.ProgramData;
 using System;
 using System.Collections;
@@ -55,14 +55,14 @@ namespace Item_PatternsTest_Actual.Factories
         public Tool EnchantFactory(EnchantType enchant, Tool toEnchant)
         {
             EnchantedTool enchantedTool = null;
-            //check if the toEnchant tool has already been enchanted
-            /*if(toEnchant.GetEnchanted() == true)
+            //check if the toEnchant tool has already been enchanted, part of the temporary solution until I have more time to figure out how to chain enchantments together better.
+            if(toEnchant.IsEnchanted() == true)
             {
                 Console.Error.WriteLine("Unable to enchant item " + toEnchant.GetItemName() + " as it is already enchanted\n");
                 return toEnchant;
-            }*/
-            //else
-            //{
+            }
+            else
+            {
                 enchantedTool = new EnchantedTool(ItemAtlas.EnchantAtlas[enchant], toEnchant);
                 if (enchantedTool == null)
                 {
@@ -70,7 +70,7 @@ namespace Item_PatternsTest_Actual.Factories
                     return toEnchant;
                 }
                 return enchantedTool;
-            //}
+            }
         }
 
         public Resource ResourceFactory(ResourceType resourceType)

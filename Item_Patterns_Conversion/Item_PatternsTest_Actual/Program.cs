@@ -2,7 +2,7 @@
 using Item_PatternsTest_Actual.Behaviors;
 using Item_PatternsTest_Actual.Enums;
 using Item_PatternsTest_Actual.Factories;
-using Item_PatternsTest_Actual.Interfaces;
+using Item_PatternsTest_Actual.Items;
 
 namespace Item_PatternsTest_Actual
 {//Called this Item_PatternsTest_Actual because I tried porting the original VR game code into 'Item_PatternsTest' straight from Unity and it was a bit of a mess.
@@ -14,10 +14,10 @@ namespace Item_PatternsTest_Actual
             Console.WriteLine("Hello World!\n");
             Console.WriteLine("\n*****TOOL TESTING*****\n");
             //Manual Pickaxe Creation and Tests
-            Console.WriteLine("Creating an Iron Pickaxe Item manually!");
-            Item Iron_Pickaxe = new Tool(new ItemBehavior("Iron Pickaxe", 1, "Simple but Sturdy!", 25f), new ToolBehavior(10f, DamageType.Piercing, ToolType.Pickaxe, 100));
+            /*Console.WriteLine("Creating an Iron Pickaxe Item manually!");
+            Item Iron_Pickaxe = new Tool(ItemAtlas.ToolAtlas_Pickaxe[ToolQuality.Iron].itemInfo, ItemAtlas.ToolAtlas_Pickaxe[ToolQuality.Iron].toolInfo);
             Console.WriteLine("Getting the Description of the Iron Pickaxe!\n");
-            Console.WriteLine(Iron_Pickaxe.GetDescription());
+            Console.WriteLine(Iron_Pickaxe.GetDescription());*/
 
             //Steel pickaxe creation with the factory
             Console.WriteLine("\nCreating a Steel Pickaxe with the Item Factory\n");
@@ -28,7 +28,7 @@ namespace Item_PatternsTest_Actual
             Console.WriteLine(changingPickaxe.GetDescription());
 
             //Testing what happens when I change the name of the Steel Pickaxe ItemBehavior
-            Console.WriteLine("\nChanging the name of Steel Pickaxe to see what happens.\n");
+            Console.WriteLine("\nChanging the name of Steel Pickaxe to see what happens *TESTING THE FLYWEIGHT DESIGN PATTERN*.\n");
             changingPickaxe.ChangeName("Definitely NOT a Steel Pickaxe");
             Console.WriteLine(changingPickaxe.GetDescription());
             //Test Result: "Definitely NOT a Steel Pickaxe" becomes the name for all steel pickaxes. This makes me wonder if it meets the criteria for the flyweight design pattern
@@ -58,7 +58,7 @@ namespace Item_PatternsTest_Actual
             changingPickaxe = ItemFactory.Instance.EnchantFactory(EnchantType.Fiery, changingPickaxe);
             Console.WriteLine(changingPickaxe.GetDescription());
 
-            Console.WriteLine("\nEnchanting the Fiery Steel Pickaxe with the Crushing Enchant\n");
+            Console.WriteLine("\nAttempting to enchant the Fiery Steel Pickaxe with the Crushing Enchant\n");
             changingPickaxe = ItemFactory.Instance.EnchantFactory(EnchantType.Crushing, changingPickaxe);
             Console.WriteLine(changingPickaxe.GetDescription());
 

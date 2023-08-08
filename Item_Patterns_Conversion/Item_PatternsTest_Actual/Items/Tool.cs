@@ -27,12 +27,14 @@ namespace Item_PatternsTest_Actual
         public virtual float GetDamage() { return toolBehavior.Damage(); }
         public virtual DamageType GetDamageType() { return toolBehavior.DamageType(); }
         public virtual ToolType GetToolType() { return toolBehavior.ToolType(); }
-        public virtual bool isBroken() { return toolBehavior.IsBroken(); }
-        //Edit attributes of the ToolBehavior
-        public virtual void ModifyDurability(float modifier)
-        {
-            toolBehavior.ModifyDurability(modifier);
-        }
+        public virtual bool IsBroken() { return toolBehavior.BrokenStatus(); }
+
+        //Return the enchanted status of the toolBehavior, temporary solution until I have more time to figure out a better way to chain enchants together.
+        public virtual bool IsEnchanted() { return toolBehavior.EnchantedStatus(); }
+        
+        //Edit attributes of the ToolBehavior, should probably renamed to not be confused with the toolBehavior method signature.
+        public virtual void ModifyDurability(float modifier) { toolBehavior.ModifyDurability(modifier); }
+        public virtual void ModifyEnchantedStatus(bool enchantStatus) { toolBehavior.ModifyEnchantedStatus(enchantStatus); }
 
         //Methods designed to use the Template design pattern from Item.cs, get information from the associated behaviors of the item.
         public override string GetItemName() { return itemBehavior.Name(); }
@@ -50,7 +52,7 @@ namespace Item_PatternsTest_Actual
         public virtual float DealDamage()
         {
             float damageToDeal = 0;
-            if (toolBehavior.IsBroken() == true) //if the tool is broken, deal a quarter of the damage it is meant to deal with no modifiers
+            if (toolBehavior.BrokenStatus() == true) //if the tool is broken, deal a quarter of the damage it is meant to deal with no modifiers
                 damageToDeal = toolBehavior.Damage() * .25f;
             else
                 damageToDeal = toolBehavior.Damage();
