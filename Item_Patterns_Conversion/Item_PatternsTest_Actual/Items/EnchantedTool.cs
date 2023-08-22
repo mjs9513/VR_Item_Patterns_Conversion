@@ -12,7 +12,7 @@ namespace Item_PatternsTest_Actual.Behaviors
     //Designed with the Decorator Design pattern in mind
     //ITool is added to ensure the appropriate tool methods are overloaded and re-routed to baseTool. Alternatively, EnchantedTool could
     //Potentially inherit just from the base Item class and still implement the ITool interface potentially? Probably worth testing.
-    public class EnchantedTool : Tool, ITool 
+    public class EnchantedTool : Tool, ITool
     {
         //Base tool to be used with ITool methods
         protected Tool baseTool; 
@@ -32,6 +32,13 @@ namespace Item_PatternsTest_Actual.Behaviors
             _weightModifier = Math.Max(enchant._weightModifier, 0);//prevent the damage modifier from going below 0 
         }
 
+        //Overloads of Item methods to re-route them to use baseTool.
+        public override int GetID() { return baseTool.GetID(); }
+        public override bool GetStackable() { return baseTool.GetStackable(); }
+        public override bool IsMaxStacked() { return baseTool.IsMaxStacked(); }
+        public override int GetMaxAmount() { return baseTool.GetMaxAmount(); }
+        public override int GetCurrentCount() { return baseTool.GetCurrentCount(); }
+
         //Overloads of Tool methods to re-route them to use baseTool.
         public override float GetItemWeight() { return baseTool.GetItemWeight() + _weightModifier; }
         public override float GetDurability() { return baseTool.GetDurability(); }
@@ -39,10 +46,7 @@ namespace Item_PatternsTest_Actual.Behaviors
         public override DamageType GetDamageType() { return baseTool.GetDamageType(); }
         public override ToolType GetToolType() { return baseTool.GetToolType(); }
         public override bool IsBroken() { return baseTool.IsBroken(); }
-        public override void ModifyDurability(float modifier)
-        {
-            baseTool.ModifyDurability(modifier);
-        }
+        public override void ModifyDurability(float modifier) { baseTool.ModifyDurability(modifier); }
 
         //Return the enchanted status of the baseTool, temporary solution until I have more time to figure out a better way to chain enchants together.
         public override bool IsEnchanted() { return baseTool.IsEnchanted(); }

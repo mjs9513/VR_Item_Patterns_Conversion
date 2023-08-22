@@ -10,7 +10,7 @@ namespace Item_PatternsTest_Actual.Interfaces
     //Storage behavior interface
     interface IStorage
     {
-        public abstract void AddItem(Item toPickup);
+        public void AddItem<T>(ref T toPickup) where T : Item; //Allow derived classes of Item to be able to be stored.
         public abstract void RemoveItem(int invSlot);
         public abstract Item DropItem(int invSlot);
 

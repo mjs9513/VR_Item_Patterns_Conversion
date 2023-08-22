@@ -16,13 +16,13 @@ namespace Item_PatternsTest_Actual
         protected StackBehavior stackBehavior; //Using the Strategy Pattern, this handles if an item is stackable and what the total weight is.
 
         //Accessors for information from itemBehavior
-        public int GetID() { return itemBehavior.ID(); }
+        public virtual int GetID() { return itemBehavior.ID(); }
 
         //Accessors for information from stackbehavior
-        public bool GetStackable() { return stackBehavior.Stackable(); }
-        public bool IsMaxStacked() { return stackBehavior.MaxCountReached(); }
-        public int GetMaxAmount() { return stackBehavior.MaxCount(); }
-        public int GetCurrentCount() { return stackBehavior.Count(); }
+        public virtual bool GetStackable() { return stackBehavior.Stackable(); }
+        public virtual bool IsMaxStacked() { return stackBehavior.MaxCountReached(); }
+        public virtual int GetMaxAmount() { return stackBehavior.MaxCount(); }
+        public virtual int GetCurrentCount() { return stackBehavior.Count(); }
 
         public Item(ItemBehavior itemInfo, StackBehavior stackInfo)
         {

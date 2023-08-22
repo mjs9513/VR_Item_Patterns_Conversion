@@ -32,12 +32,12 @@ namespace Item_PatternsTest_Actual.Behaviors
             foreach (Item itm in _storageInventory)
             {
                 if(itm != null)
-                    storageInfo += itm.GetDescription() + "\n";
+                    storageInfo += "\n" + itm.GetDescription() + "\n";
             }
             return storageInfo;
         }
 
-        public void AddItem(Item toPickup)
+        public void AddItem<T>(ref T toPickup) where T : Item //Allow derived classes of Item to be able to be stored.
         {
             int currSize = _storageInventory.Count;
             if (currSize >= _storageInventory.Capacity)
@@ -48,15 +48,15 @@ namespace Item_PatternsTest_Actual.Behaviors
 
             //Check if the item being added is stackable.
             bool isStackable = toPickup.GetStackable();
-
+            T pickupData = toPickup;
             if (isStackable == true)
             {//If it is, see if the storage has an item of that type already
                 Item locatedMatch = null;
                 bool validMatch = _storageInventory.Any(check =>
                 {
-                    if (check.GetID() == toPickup.GetID() && !check.IsMaxStacked())
+                    if (check.GetID() == pickupData.GetID() && !check.IsMaxStacked())
                     {//Check for matching IDs that are not at max stack
-                        if (check.GetCurrentCount() + toPickup.GetCurrentCount() <= check.GetMaxAmount())
+                        if (check.GetCurrentCount() + pickupData.GetCurrentCount() <= check.GetMaxAmount())
                         {//Ensure that item found with matching IDs and is not max stacked can facilitate adding the new item's count
                             locatedMatch = check;
                             return true;

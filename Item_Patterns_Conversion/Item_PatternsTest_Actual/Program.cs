@@ -11,17 +11,16 @@ namespace Item_PatternsTest_Actual
     {
         static void Main(string[] args)
         {
+            Item testItem;
+            Resource testResource;
+            Tool changingPickaxe;
+
             Console.WriteLine("Hello World!\n");
             Console.WriteLine("\n*****TOOL TESTING*****\n");
-            //Manual Pickaxe Creation and Tests
-            /*Console.WriteLine("Creating an Iron Pickaxe Item manually!");
-            Item Iron_Pickaxe = new Tool(ItemAtlas.ToolAtlas_Pickaxe[ToolQuality.Iron].itemInfo, ItemAtlas.ToolAtlas_Pickaxe[ToolQuality.Iron].toolInfo);
-            Console.WriteLine("Getting the Description of the Iron Pickaxe!\n");
-            Console.WriteLine(Iron_Pickaxe.GetDescription());*/
 
             //Steel pickaxe creation with the factory
             Console.WriteLine("\nCreating a Steel Pickaxe with the Item Factory\n");
-            Tool changingPickaxe = ItemFactory.Instance.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
+            changingPickaxe = ItemFactory.Instance.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
             Console.WriteLine(changingPickaxe.GetDescription());
             Console.WriteLine("\nMaking the Steel Pickaxe lose durability\n");
             changingPickaxe.ModifyDurability(-10f);
@@ -63,14 +62,12 @@ namespace Item_PatternsTest_Actual
             Console.WriteLine(changingPickaxe.GetDescription());
 
             //Changing the Fiery Steel Pickaxe back to a regular Steel Pickaxe
-            Console.WriteLine("\nChanging the Fiery Steel Pickaxe back to a regular Steel Pickaxe\n");
-            changingPickaxe = ItemFactory.Instance.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
-            Console.WriteLine(changingPickaxe.GetDescription());
+            //Console.WriteLine("\nChanging the Fiery Steel Pickaxe back to a regular Steel Pickaxe\n");
+            //changingPickaxe = ItemFactory.Instance.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
+            //Console.WriteLine(changingPickaxe.GetDescription());
 
             Console.WriteLine("\n*****RESOURCE TESTING*****\n");
             //Using testItem to get items from the ResourceFactory (since Resource extends from Item) and testResource reference the data in testItem to edit it with Resource methods.
-            Item testItem;
-            Resource testResource;
 
             //Testing Wood and Stone resources.
             testItem = ItemFactory.Instance.ResourceFactory(ResourceType.Wood);
@@ -98,8 +95,36 @@ namespace Item_PatternsTest_Actual
             Console.WriteLine(testStorage.GetStorageInfo());
 
             Console.WriteLine("\nAdding the 'testItem' wood to a storage bag\n");
-            testStorage.AddItem(testItem);
+            testStorage.AddItem(ref testItem);
             Console.WriteLine(testStorage.GetStorageInfo());
+
+            Console.WriteLine("Getting more wood for testItem");
+            testItem = ItemFactory.Instance.ResourceFactory(ResourceType.Wood);
+            Console.WriteLine(testItem.GetDescription());
+
+            Console.WriteLine("\nAdding MORE 'testItem' wood to a storage bag\n");
+            testStorage.AddItem(ref testItem);
+            Console.WriteLine(testStorage.GetStorageInfo());
+
+            Console.WriteLine("\nAdding the Changing Pickaxe item to a storage bag\n");
+            testStorage.AddItem(ref changingPickaxe);
+            Console.WriteLine(testStorage.GetStorageInfo());
+
+            Console.WriteLine("\nAdding the 'testResource' Resource to a storage bag\n");
+            testStorage.AddItem(ref testResource);
+            Console.WriteLine(testStorage.GetStorageInfo());
+
+            //Console.WriteLine("\nAttempting to get the description of testResource\n");
+            //Console.WriteLine(testResource.GetDescription());
+
+            //Console.WriteLine("\nAttempting to get the description of the Changing Pickaxe item now that its in storage\n");
+            //Console.WriteLine(changingPickaxe.GetDescription());
         }
     }
 }
+
+//Manual Pickaxe Creation and Tests
+/*Console.WriteLine("Creating an Iron Pickaxe Item manually!");
+Item Iron_Pickaxe = new Tool(ItemAtlas.ToolAtlas_Pickaxe[ToolQuality.Iron].itemInfo, ItemAtlas.ToolAtlas_Pickaxe[ToolQuality.Iron].toolInfo);
+Console.WriteLine("Getting the Description of the Iron Pickaxe!\n");
+Console.WriteLine(Iron_Pickaxe.GetDescription());*/
