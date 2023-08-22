@@ -91,7 +91,15 @@ namespace Item_PatternsTest_Actual
 
             Console.WriteLine("\nChanging stone back into  wood\n");
             testItem = ItemFactory.Instance.ResourceFactory(ResourceType.Wood);
-            Console.WriteLine(testItem.GetDescription()); 
+            Console.WriteLine(testItem.GetDescription());
+
+            Console.WriteLine("\n*****STORAGE TESTING*****\n");
+            StorageBehavior testStorage = new StorageBehavior(25, "Test Storage Bag");
+            Console.WriteLine(testStorage.GetStorageInfo());
+
+            Console.WriteLine("\nAdding the 'testItem' wood to a storage bag\n");
+            testStorage.AddItem(testItem);
+            Console.WriteLine(testStorage.GetStorageInfo());
         }
     }
 }

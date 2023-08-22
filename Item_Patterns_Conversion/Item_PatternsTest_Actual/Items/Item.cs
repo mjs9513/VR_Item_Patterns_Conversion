@@ -17,7 +17,13 @@ namespace Item_PatternsTest_Actual
 
         //Accessors for information from itemBehavior
         public int GetID() { return itemBehavior.ID(); }
-        
+
+        //Accessors for information from stackbehavior
+        public bool GetStackable() { return stackBehavior.Stackable(); }
+        public bool IsMaxStacked() { return stackBehavior.MaxCountReached(); }
+        public int GetMaxAmount() { return stackBehavior.MaxCount(); }
+        public int GetCurrentCount() { return stackBehavior.Count(); }
+
         public Item(ItemBehavior itemInfo, StackBehavior stackInfo)
         {
             this.itemBehavior = itemInfo;
@@ -31,7 +37,7 @@ namespace Item_PatternsTest_Actual
         public abstract string GetItemName();
         public abstract float GetItemWeight();
         public abstract string GetItemStats();
-        public abstract string GetItemBaseDescription(); 
+        public abstract string GetItemBaseDescription();
         public virtual string GetDescription()
         {
             string itemDescription = "";
@@ -43,6 +49,7 @@ namespace Item_PatternsTest_Actual
 
             return itemDescription;
         }
+
 
 
         public void ChangeName(string newName) { itemBehavior.ChangeName(newName); } //Test function, not meant for the final product. Used for testing the Flyweight design pattern (See ItemBehavior.cs)

@@ -16,7 +16,7 @@ namespace Item_PatternsTest_Actual.Behaviors
         public int MaxCount() { return MAX_STACK; }
         public int Count() { return _count; }
         public bool Stackable() { return _stackable; }
-
+        public bool MaxCountReached() { return _count == MAX_STACK; }
         public StackBehavior(int baseCount, bool stackable, int maxStack)
         {
             _count = baseCount;
