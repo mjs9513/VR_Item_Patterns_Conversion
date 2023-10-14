@@ -15,8 +15,7 @@ namespace Item_PatternsTest_Actual
             Resource testResource;
             Tool changingPickaxe;
 
-            Console.WriteLine("Hello World!\n");
-            Console.WriteLine("\n*****TOOL TESTING*****\n");
+            Console.WriteLine("*****TOOL TESTING*****\n");
 
             //Steel pickaxe creation with the factory
             Console.WriteLine("\nCreating a Steel Pickaxe with the Item Factory\n");
@@ -30,12 +29,12 @@ namespace Item_PatternsTest_Actual
             Console.WriteLine("\nChanging the name of Steel Pickaxe to see what happens *TESTING THE FLYWEIGHT DESIGN PATTERN*.\n");
             changingPickaxe.ChangeName("Definitely NOT a Steel Pickaxe");
             Console.WriteLine(changingPickaxe.GetDescription());
-            //Test Result: "Definitely NOT a Steel Pickaxe" becomes the name for all steel pickaxes. This makes me wonder if it meets the criteria for the flyweight design pattern
-            //Since all Steel Pickaxes are referncing the same ItemBehavior associated with the Steel Pickaxe item.
 
-            /*Item manualSteelPickaxe = ItemFactory.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
-            Console.WriteLine("\nCreated a new Steel Pickaxe from the ToolFactory, printing out the description of it\n");
-            Console.WriteLine(manualSteelPickaxe.GetDescription());*/ // -> Created a new Steel Pickaxe with fresh data for durability different than changingPickaxe, but still had the name change.
+            Item manualSteelPickaxe = ItemFactory.Instance.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
+            Console.WriteLine("\nManually created a new Steel Pickaxe from the ToolFactory, printing out the description of it\n");
+            Console.WriteLine(manualSteelPickaxe.GetDescription()); // -> Created a new Steel Pickaxe with fresh data for durability different than changingPickaxe, but still had the name change.
+
+            Console.WriteLine("\nTest Result: 'Definitely NOT a Steel Pickaxe' becomes the name for all steel pickaxes. This would meet the criteria of the Flyweight Design pattern as it caused a universal change, since all Steel Pickaxes are referncing the same ItemBehavior associated with the Steel Pickaxe item.");
 
             //changing the Steel pickaxe to Mythical and testing it
             Console.WriteLine("\nChanging the Steel Pickaxe to a Mythical Pickaxe\n");
@@ -51,6 +50,7 @@ namespace Item_PatternsTest_Actual
             changingPickaxe.ChangeName("Steel Pickaxe"); //Chaning the name of the Steel Pickaxe back.
             Console.WriteLine(changingPickaxe.GetDescription());
 
+
             Console.WriteLine("\n*****ENCHANT TESTING*****\n");
 
             Console.WriteLine("Enchanting the current Steel Pickaxe with the Fiery Enchant\n");
@@ -62,9 +62,9 @@ namespace Item_PatternsTest_Actual
             Console.WriteLine(changingPickaxe.GetDescription());
 
             //Changing the Fiery Steel Pickaxe back to a regular Steel Pickaxe
-            //Console.WriteLine("\nChanging the Fiery Steel Pickaxe back to a regular Steel Pickaxe\n");
-            //changingPickaxe = ItemFactory.Instance.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
-            //Console.WriteLine(changingPickaxe.GetDescription());
+            Console.WriteLine("\nChanging the Fiery Steel Pickaxe back to a regular Steel Pickaxe\n");
+            changingPickaxe = ItemFactory.Instance.ToolFactory(ToolQuality.Steel, ToolType.Pickaxe);
+            Console.WriteLine(changingPickaxe.GetDescription());
 
             Console.WriteLine("\n*****RESOURCE TESTING*****\n");
             //Using testItem to get items from the ResourceFactory (since Resource extends from Item) and testResource reference the data in testItem to edit it with Resource methods.
